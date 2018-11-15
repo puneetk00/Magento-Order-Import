@@ -1,7 +1,7 @@
 <?php
 /*
- * Created on Jul 7, 2008
- *
+ * Module upgraded by Synapse India
+ * Developer : puneet puneetk00@gmail.com
  */
 
 class Ebizmarts_AmazonOrders_Block_GridMageOrders extends Mage_Adminhtml_Block_Sales_Order_Grid

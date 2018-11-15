@@ -1,7 +1,7 @@
 <?php
 /*
- * Created on Jul 7, 2008
- *
+ * Module upgraded by Synapse India
+ * Developer : puneet puneetk00@gmail.com
  */
 
 class Ebizmarts_AmazonOrders_Block_InfoMageOrders extends Mage_Adminhtml_Block_Sales_Order_View_Info
@@ -13,7 +13,6 @@ class Ebizmarts_AmazonOrders_Block_InfoMageOrders extends Mage_Adminhtml_Block_S
         if ($this->getOrder()) {
 				
 				$name = array();
-			  //$amazon_resource = Mage::getResourceModel('sales/order')->load($this->getOrder()->getId());
 				if($this->getOrder()->getAmazonOrderId()){
 					$name = array(
 						Mage::helper('amazonOrders')->__('Imported from Amazon'),
