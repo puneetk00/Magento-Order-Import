@@ -1,10 +1,5 @@
-#Magento import order from text file. 
+# magento-search-term-import-export-1
 
-##Required product Attribute
-product_code
+You can bulk import/export serach tearm via this module and suggest search tearm with your products. 
 
-
-#Magento Version
-1.4.0 to 1.9.x
-
-Text format required ass uploaded in directory
+magento search term import export
