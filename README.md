@@ -5,6 +5,6 @@ product_code
 
 
 ### Magento Version
-####1.4.0 to 1.9.x
+#### 1.4.0 to 1.9.x
 
-#####Text format required ass uploaded in directory
+##### Text format required ass uploaded in directory
