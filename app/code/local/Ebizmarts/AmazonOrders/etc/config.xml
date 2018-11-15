@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Ebizmarts_AmazonOrders>
+            <version>0.0.2</version>
+        </Ebizmarts_AmazonOrders>
+    </modules>
+
+    <global>
+        <models>
+            <amazonOrders>
+                <class>Ebizmarts_AmazonOrders_Model</class>
+            </amazonOrders>
+        </models>
+        <blocks>
+            <amazonOrders>
+                <class>Ebizmarts_AmazonOrders_Block</class>
+            </amazonOrders>
+
+            <!--  override orders admin -->
+            <adminhtml>
+	    		<rewrite>
+			          <sales_order_view_info>Ebizmarts_AmazonOrders_Block_InfoMageOrders</sales_order_view_info>
+			    </rewrite>
+			    <rewrite>
+			          <sales_order_grid>Ebizmarts_AmazonOrders_Block_GridMageOrders</sales_order_grid>
+			    </rewrite>
+	    	</adminhtml>
+
+        </blocks>
+        <helpers>
+            <amazonOrders>
+                <class>Ebizmarts_AmazonOrders_Helper</class>
+            </amazonOrders>
+        </helpers>
+
+        <resources>
+         <amazonOrders_setup>
+            <setup>
+               <module>Ebizmarts_AmazonOrders</module>
+             </setup>
+            <connection>
+               <use>core_setup</use>
+            </connection>
+         </amazonOrders_setup>
+         <amazonOrders_write>
+            <connection>
+               <use>core_write</use>
+            </connection>
+         </amazonOrders_write>
+         <amazonOrders_read>
+            <connection>
+               <use>core_read</use>
+            </connection>
+         </amazonOrders_read>
+      </resources>
+    </global>
+
+    <admin>
+        <routers>
+            <amazonOrders>
+                <use>admin</use>
+                <args>
+                    <module>Ebizmarts_AmazonOrders</module>
+                    <frontName>amazon</frontName>
+                </args>
+            </amazonOrders>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <ebizmarts_adminhtml>
+                    <files>
+                        <amazonOrders>Ebizmarts_AmazonOrders.csv</amazonOrders>
+                    </files>
+                </ebizmarts_adminhtml>
+            </modules>
+        </translate>
+
+        <menu>
+            <sales>
+                <children>
+                    <amazonOrders_import translate="title" module="amazonOrders">
+                        <title>Import orders from Amazon</title>
+                        <action>amazonOrders/import</action>
+                        <sort_order>1000</sort_order>
+                    </amazonOrders_import>
+                </children>
+            </sales>
+        </menu>
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <all>
+							<title>Allow everything</title>
+						</all>
+                        <sales>
+                            <children>
+                                <amazonOrders_import>
+                                    <title>Import orders from Amazon.com</title>
+                                </amazonOrders_import>
+                            </children>
+                        </sales>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+
+        <layout>
+            <updates>
+                <amazonOrders>
+                    <file>amazonOrders.xml</file>
+                </amazonOrders>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

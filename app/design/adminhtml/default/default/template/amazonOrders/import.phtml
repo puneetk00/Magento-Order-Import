@@ -1,0 +1,39 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Import orders from Amazon')?></h3></td>
+            <td class="a-right">
+                <button onclick="editForm.submit()" class="scalable save" type="button"><span>Continue</span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <form id="edit_form" name="edit_form" method="post" action="<?php echo $this->getUrl('*/*/post', array('_secure'=>true) )?>" enctype="multipart/form-data">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Pick an Amazon report with orders to import them into the Magento store')?></h4>
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?php echo $this->__('Amazon Report File')?> <span class="required">*</span></td>
+                    <td class="input-ele"><input type="file" class="input-text required-entry" name="report" /></td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Action for orders previuosly imported')?> <span class="required">*</span></td>
+                    <td class="input-ele"><select name="imported" />
+                    							<option value="ignore"><?php echo $this->__('Ignore the order')?></option>
+									<option value="update"><?php echo $this->__('Update the order')?></option>
+                    						</select> </td>
+                </tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Copy orders to')?> <span class="required">*</span></td>
+                    <td class="input-ele"><?php echo $this->getWebsitesOptionHtml()?>
+						<!-- select name="store" id="store" ><option value="21">iShopNutrition.com English</option></select -->
+					</td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    var editForm = new varienForm('edit_form');
+</script>

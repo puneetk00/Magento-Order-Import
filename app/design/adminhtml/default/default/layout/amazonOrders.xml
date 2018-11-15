@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <amazon_import_index>
+        <reference name="content">
+            <block type="amazonOrders/import" name="import" template="amazonOrders/import.phtml"/>
+        </reference>
+    </amazon_import_index>
+
+    <amazon_import_post>
+        <reference name="content">
+            <block type="amazonOrders/post" name="post" template="amazonOrders/post.phtml"/>
+        </reference>
+    </amazon_import_post>
+</layout>

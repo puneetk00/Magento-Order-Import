@@ -1,0 +1,91 @@
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?php echo $this->__('Import orders from Amazon')?></h3></td>
+            <td class="a-right">
+                <button onclick="window.location='..'" class="scalable save" type="button"><span>Continue</span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="content-header"><h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Progress');?></h4><br/>
+	<div id="progress_bar" ></div>
+</div>
+<div class="content-header" ><h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Statistics');?></h4><br/>
+	<div id="statistics" ></div>
+</div>
+<div class="content-header"><h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('More Details Order by Order');?></h4><br/>
+	<div id="log" ></div>
+</div>
+
+<script languague="javascript">
+var dataToSend = new Array();
+var progresses = new Array();
+var index = -1;
+var orders_count = 0;
+var customers_created = 0;
+var existent_orders = 0;
+<?php
+$this->initProcess();
+while($res = $this->moveNext()) {
+	echo "dataToSend.push('" . $res . "');\n";
+	echo "progresses.push('" . $this->getPercentProgress() . "');\n";
+}
+
+?>
+
+function getProgressBar(progress) {
+	val = progress * 100;
+	txt = Math.round(val) + '% Completed <table width="100%" border="0" cellpadding="0"><tr>';
+	for (i = 0; i < 50; i++) {
+		txt += '<td width="2%" style="border: solid 1px #000000; background-color: #';
+		if (i * 2 < val) {
+			txt += '2F2F2F';
+		} else {
+			txt += 'FFFFFF';
+		}
+		txt += '">&nbsp;</td>';
+	}
+	txt += '</tr></table>';
+	return txt;
+}
+
+function getStatistics() {
+	return '<table width="100%" border="0">' +
+			'<tr><td>' +  orders_count + ' feed lines processed</td>' +
+			'<td>' + existent_orders + ' orders <?php echo ($_POST["imported"] == "update")?"updated":"ommited" ?></td>' +
+			'<td>' + customers_created + ' new customers created</td></tr>' +
+			'</table>';
+}
+
+function createRequest() {
+	if (dataToSend[++index]) {
+		console.log(dataToSend);
+		new Ajax.Request('../process/', {
+		  method: 'post',
+		  parameters: dataToSend[index],
+		  onComplete: function(transport) {
+//			    if (200 == transport.status) {
+
+			    	var resp = transport.responseText;
+			    	tmp = resp.split('|');
+
+					orders_count++;
+					if (tmp[1]==1) existent_orders++;
+					if (tmp[2]==1) customers_created++;
+					if (!tmp[3]) tmp[3]=dataToSend[index];
+
+                    document.getElementById('log').innerHTML += tmp[3].replace(/&/g,"<br />");
+					document.getElementById('statistics').innerHTML = getStatistics();
+					document.getElementById('progress_bar').innerHTML = getProgressBar(progresses[index]);
+					createRequest();
+//			    }
+		    }
+		});
+	}
+}
+
+createRequest();
+</script>
+
