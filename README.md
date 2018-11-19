@@ -1,4 +1,4 @@
-# Magento import order from Mamazon report text file. 
+# Magento import order from Amazon report text file. 
 
 ## Required product Attribute
 product_code
