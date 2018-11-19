@@ -8,3 +8,7 @@ product_code
 #### 1.4.0 to 1.9.x
 
 ##### Text format required ass uploaded in directory
+
+Developer
+Email - puneetk00@gmail.com
+
